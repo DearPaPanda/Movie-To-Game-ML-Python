@@ -1,0 +1,71 @@
+# 🎬 Filmden Oyuna Öneri Sistemi 🎮
+
+Bu proje, **film açıklamalarına göre benzer video oyunlarını öneren** yerel bir makine öğrenmesi uygulamasıdır.  
+Model, metinlerin **anlamsal benzerliğini (semantic similarity)** hesaplayarak filmle teması benzer olan oyunları bulur.
+
+---
+
+## 🧠 Genel Bakış
+Sistem, **SentenceTransformer** (`all-MiniLM-L6-v2`) modelini kullanarak film ve oyun açıklamalarını **vektörlere** dönüştürür.  
+Bu vektörler arasındaki **kosinüs benzerliği (cosine similarity)** hesaplanarak en benzer 3 oyun önerilir.
+
+---
+
+## ⚙️ Özellikler
+- **OMDb API** üzerinden film bilgilerini alır  
+- **RAWG API** üzerinden oyun verilerini çeker  
+- **Benzerlik skoru 0.50’nin üzerinde** olan oyunları önerir  
+- **JSON dosyası** sayesinde aynı oyunu 3 defadan fazla önermez  
+- **Streamlit arayüzü** ile kullanıcı dostu bir kullanım sunar  
+- **Korelasyon ve benzerlik ısı haritaları** üretir (veri analizi için)
+
+---
+
+## 🧩 Kullanılan Teknolojiler
+- 🐍 **Python 3.10+**
+- 🤖 **SentenceTransformer** (metin gömme modeli)
+- 📊 **Scikit-learn** (kosinüs benzerliği hesaplama)
+- 🧮 **Pandas / NumPy**
+- 🌐 **Streamlit** (web arayüzü)
+- 📈 **Seaborn & Matplotlib** (grafik ve korelasyon görselleştirmesi)
+
+---
+
+## 🧰 Kurulum
+```bash
+pip install -r requirements.txt
+Proje dizinine bir config.py dosyası oluştur:
+
+python
+Copy code
+OMDB_API_KEY = "senin_omdb_api_keyin"
+RAWG_API_KEY = "senin_rawg_api_keyin"
+🚀 Çalıştırma
+bash
+Copy code
+streamlit run app.py
+Tarayıcında http://localhost:8501 adresine giderek uygulamayı açabilirsin.
+
+📊 Çıktılar
+Benzerlik skorlarıyla önerilen oyunlar
+
+Korelasyon matrisi: correlation_matrix.png
+
+Öğrenme eğrisi grafiği: learning_curve.png
+
+💾 Geri Bildirim Kaydı
+Kullanıcı geri bildirimleri şu dosyada saklanır:
+
+bash
+Copy code
+data/feedback.json
+🔮 Gelecekteki Geliştirmeler
+Derin öğrenme ile modelin iyileştirilmesi
+
+Kullanıcı geri bildirimlerine göre benzerlik ağırlıklandırması
+
+Kategorilere göre daha hassas öneri sistemi
+
+Offline veri önbellekleme desteği
+
+Geliştirici: Atakan ve Furkan
